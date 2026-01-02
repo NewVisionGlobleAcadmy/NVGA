@@ -1,0 +1,160 @@
+:root {
+    --primary-blue: #1e3a8a;    /* Trust & Focus */
+    --secondary-green: #15803d; /* Growth & Nature */
+    --energy-orange: #f59e0b;  /* Energy & Cheerfulness */
+    --calm-bg: #f8fafc;        /* Neutral Grayish White */
+    --text-dark: #1e293b;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0; padding: 0;
+    background-color: var(--calm-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Header & Navigation */
+header {
+    background: var(--white);
+    padding: 15px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 4px solid var(--primary-blue);
+}
+
+.school-info h1 {
+    margin: 0; color: var(--primary-blue);
+    font-size: 1.8rem; letter-spacing: 1px;
+}
+
+.school-info p { margin: 0; color: var(--secondary-green); font-weight: 600; }
+
+nav {
+    background: var(--primary-blue);
+    display: flex;
+    justify-content: center;
+    sticky: top;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: var(--white);
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover { background: var(--secondary-green); }
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(30, 58, 138, 0.7), rgba(21, 128, 61, 0.6)), 
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h2 { font-size: 2.5rem; margin-bottom: 20px; }
+
+/* Buttons */
+.btn-energy {
+    background: var(--energy-orange);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.btn-energy:hover { transform: scale(1.05); background: #d97706; }
+
+/* Highlights Card Section */
+.highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 50px 5%;
+}
+
+.card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-top: 5px solid var(--secondary-green);
+}
+
+.card i { font-size: 40px; color: var(--primary-blue); margin-bottom: 15px; }
+
+footer { background: var(--primary-blue); color: white; text-align: center; padding: 20px; margin-top: 40px; }
+:root {
+    --primary-blue: #1e3a8a;
+    --secondary-green: #15803d;
+    --energy-orange: #f59e0b;
+    --calm-bg: #f1f5f9;
+    --white: #ffffff;
+}
+
+body { font-family: 'Segoe UI', sans-serif; margin:0; background: var(--calm-bg); }
+.header-container { display: flex; align-items: center; padding: 10px 5%; background: white; }
+.school-info h1 { color: var(--primary-blue); margin: 0; }
+.school-info p { color: var(--secondary-green); font-weight: bold; margin: 0; }
+
+nav { background: var(--primary-blue); display: flex; justify-content: center; position: sticky; top: 0; z-index: 100; }
+nav a { color: white; padding: 15px 20px; text-decoration: none; font-weight: 500; }
+nav a.active, nav a:hover { background: var(--secondary-green); }
+
+.container { max-width: 1000px; margin: auto; padding: 30px 20px; }
+.section-title { color: var(--primary-blue); border-left: 6px solid var(--energy-orange); padding-left: 15px; margin-bottom: 25px; }
+
+/* Table */
+.table-responsive { overflow-x: auto; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+table { width: 100%; border-collapse: collapse; }
+table th { background: var(--primary-blue); color: white; padding: 12px; }
+table td { padding: 10px; border-bottom: 1px solid #eee; text-align: center; }
+
+.note-box { background: #fff3cd; padding: 15px; border-radius: 5px; margin-top: 15px; border-left: 5px solid #ffc107; }
+
+/* Form */
+.admission-form { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.input-group label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--primary-blue); }
+.input-group input, .input-group select, .input-group textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+.full-width { grid-column: span 2; }
+
+.btn-submit { background: var(--energy-orange); color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+.btn-submit:hover { background: var(--primary-blue); }
+
+/* List Display */
+.list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; margin-top: 20px; }
+.student-card { background: white; border-left: 5px solid var(--secondary-green); padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.divider { margin: 50px 0; border: 0; border-top: 2px dashed #cbd5e1; }
+/* Marksheet Specific Design */
+.marksheet {
+    border: 10px double var(--primary-blue);
+    padding: 30px;
+    background: #fff;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #000;
+}
+.marksheet-info { display: grid; grid-template-columns: 1fr; margin-bottom: 20px; text-align: left; }
+.marks-form-box { background: #e2e8f0; padding: 20px; border-radius: 10px; margin-top: 15px; }
+.btn-secondary { background: var(--primary-blue); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+
+@media print {
+    nav, header, .exam-tool, footer { display: none !important; }
+    .marksheet { border: 2px solid #000; width: 100%; margin: 0; }
+}

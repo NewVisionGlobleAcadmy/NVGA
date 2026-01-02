@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examination | New Vision Global Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="school-info">
+                <h1>NEW VISION GLOBAL ACADEMY</h1>
+                <p>New Thought, New Direction, New India...</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="admission.html">Admission</a>
+        <a href="examination.html" class="active">Examination</a>
+        <a href="rules.html">Rules</a>
+        <a href="about.html">About Us</a>
+        <a href="help.html">Help Desk</a>
+    </nav>
+
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-file-alt"></i> Examination & Results Portal</h2>
+
+        <section class="exam-tool">
+            <h3><i class="fas fa-id-card"></i> 1. Admit Card Generator</h3>
+            <p>Select exam details to generate admit cards for all enrolled students.</p>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Exam Type</label>
+                    <select id="examTypeAdmit">
+                        <option value="Monthly Test">Monthly Test</option>
+                        <option value="Half-Yearly">Half-Yearly</option>
+                        <option value="Final Exam">Final Exam</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Exam Starting Date</label>
+                    <input type="date" id="examDate">
+                </div>
+            </div>
+            <button class="btn-energy" style="margin-top: 15px;" onclick="generateAllAdmitCards()">
+                <i class="fas fa-print"></i> Generate All Admit Cards
+            </button>
+        </section>
+
+        <hr class="divider">
+
+        <section class="exam-tool">
+            <h3><i class="fas fa-poll-h"></i> 2. Marksheet & Report Card</h3>
+            <p>Click on a student's name below to enter marks and generate their marksheet:</p>
+            
+            <div id="marksEntryContainer" class="list-grid">
+                <p style="color: #666; padding: 20px;">No students found. Please add students in the <a href="admission.html">Admission Page</a> first.</p>
+            </div>
+        </section>
+
+        <div id="printArea"></div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <footer>
+        <p>&copy; 2026 New Vision Global Academy | Excellence in Education</p>
+    </footer>
+</body>
+</html>

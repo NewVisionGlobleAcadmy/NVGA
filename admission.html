@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission | New Vision Global Academy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="logo.png" alt="NVGA Logo" style="height: 70px;" onerror="this.src='https://via.placeholder.com/70?text=NVGA'">
+            </div>
+            <div class="school-info">
+                <h1>NEW VISION GLOBAL ACADEMY</h1>
+                <p>New Thought, New Direction, New India...</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="admission.html" class="active">Admission</a>
+        <a href="examination.html">Examination</a>
+        <a href="rules.html">Rules</a>
+        <a href="about.html">About Us</a>
+        <a href="help.html">Help Desk</a>
+    </nav>
+
+    <div class="container">
+        <section class="fee-section">
+            <h2 class="section-title"><i class="fas fa-file-invoice-dollar"></i> Fee Structure</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>S.No.</th>
+                            <th>Particulars</th>
+                            <th>Nursery to 5th</th>
+                            <th>Class 6th to 8th</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Tuition Fee</td><td>Contact Office</td><td>Contact Office</td></tr>
+                        <tr><td>2</td><td>Admission Fee</td><td>-</td><td>-</td></tr>
+                        <tr><td>3</td><td>Exam Fee</td><td>-</td><td>-</td></tr>
+                        <tr><td>4</td><td>Development Charge</td><td>-</td><td>-</td></tr>
+                        <tr><td>5</td><td>Game Fee</td><td>-</td><td>-</td></tr>
+                        <tr><td>6</td><td>Transport Charge</td><td>-</td><td>-</td></tr>
+                        <tr><td>7</td><td>Computer Fee</td><td>-</td><td>-</td></tr>
+                        <tr><td>8</td><td>Convenience Charge</td><td>-</td><td>-</td></tr>
+                        <tr><td>9</td><td>Identity Card (Tie, Belt, Diary)</td><td>-</td><td>-</td></tr>
+                        <tr><td>10</td><td>Annual Charge</td><td>-</td><td>-</td></tr>
+                        <tr><td>11</td><td>Registration Fee</td><td>-</td><td>-</td></tr>
+                        <tr><td>12</td><td>Music & Dance Fee</td><td>-</td><td>-</td></tr>
+                        <tr><td>13</td><td>Maintenance Charge</td><td>-</td><td>-</td></tr>
+                        <tr><td>14</td><td>Miscellaneous Charge</td><td>-</td><td>-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note-box">
+                <p><strong>Payment Rule:</strong> Please deposit fees on or before the 10th of each month.</p>
+                <p><em>(कृपया शुल्क प्रत्येक माह के 10 तारीख तक अवश्य जमा कर दें।)</em></p>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="enroll-section">
+            <h2 class="section-title"><i class="fas fa-user-plus"></i> Student Enrollment Form</h2>
+            <form id="enrollForm" class="admission-form">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Student Name</label>
+                        <input type="text" id="sName" required placeholder="Full Name">
+                    </div>
+                    <div class="input-group">
+                        <label>Admission No</label>
+                        <input type="text" id="sAdmNo" required placeholder="Unique ID">
+                    </div>
+                    <div class="input-group">
+                        <label>Class</label>
+                        <select id="sClass" required>
+                            <option value="">Select Class</option>
+                            <option value="Nursery">Nursery</option>
+                            <option value="LKG">LKG</option>
+                            <option value="UKG">UKG</option>
+                            <option value="1">Class 1</option>
+                            <option value="2">Class 2</option>
+                            <option value="3">Class 3</option>
+                            <option value="4">Class 4</option>
+                            <option value="5">Class 5</option>
+                            <option value="6">Class 6</option>
+                            <option value="7">Class 7</option>
+                            <option value="8">Class 8</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Section</label>
+                        <input type="text" id="sSection" placeholder="e.g. A">
+                    </div>
+                    <div class="input-group">
+                        <label>Roll No</label>
+                        <input type="number" id="sRoll">
+                    </div>
+                    <div class="input-group">
+                        <label>Father's Name</label>
+                        <input type="text" id="sFather" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Mother's Name</label>
+                        <input type="text" id="sMother" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Contact Number</label>
+                        <input type="tel" id="sContact" required>
+                    </div>
+                    <div class="input-group full-width">
+                        <label>Residential Address</label>
+                        <textarea id="sAddress" rows="2"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Student Photo</label>
+                        <input type="file" id="sPhoto" accept="image/*">
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Register Student</button>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <h3 class="list-heading">Registered Students (Class-wise List)</h3>
+            <div id="studentListContainer" class="list-grid">
+                </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2026 New Vision Global Academy | Pakhalmar, Palamu</p>
+    </footer>
+</body>
+</html>
