@@ -1,33 +1,4 @@
-document.getElementById('enrollForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Collect values
-    const studentData = {
-        name: document.getElementById('sName').value,
-        admNo: document.getElementById('sAdmNo').value,
-        sClass: document.getElementById('sClass').value,
-        section: document.getElementById('sSection').value,
-        contact: document.getElementById('sContact').value
-    };
-
-    // Create the display card
-    const card = document.createElement('div');
-    card.className = 'student-card';
-    card.innerHTML = `
-        <p><strong>Name:</strong> ${studentData.name}</p>
-        <p><strong>Adm No:</strong> ${studentData.admNo}</p>
-        <p><strong>Class:</strong> ${studentData.sClass} - ${studentData.section}</p>
-        <p><strong>Contact:</strong> ${studentData.contact}</p>
-    `;
-
-    // Add to the container
-    document.getElementById('studentListContainer').appendChild(card);
-
-    // Success Message and Reset
-    alert("Success! " + studentData.name + " has been added to the " + studentData.sClass + " list.");
-    this.reset();
-});
-// Classes and Subjects mapping based on your requirements
+// 1. Data Structure for Classes and Subjects
 const classSubjects = {
     "Nursery": ["Hindi", "English", "Math", "EVS"],
     "LKG": ["Hindi", "English", "Math", "EVS"],
@@ -42,102 +13,102 @@ const classSubjects = {
     "8": ["Hindi", "English", "Math", "Science", "S.St", "Computer", "G.K."]
 };
 
-// 1. Enrollment Function (Save to LocalStorage)
-document.getElementById('enrollForm')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const newStudent = {
-        name: document.getElementById('sName').value,
-        admNo: document.getElementById('sAdmNo').value,
-        sClass: document.getElementById('sClass').value,
-        section: document.getElementById('sSection').value || "A",
-        roll: document.getElementById('sRoll').value || "0",
-        father: document.getElementById('sFather').value
-    };
+// 2. Function to Save Student (Admission Page)
+const enrollForm = document.getElementById('enrollForm');
+if (enrollForm) {
+    enrollForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const newStudent = {
+            name: document.getElementById('sName').value,
+            admNo: document.getElementById('sAdmNo').value,
+            sClass: document.getElementById('sClass').value,
+            section: document.getElementById('sSection').value || "A",
+            roll: document.getElementById('sRoll').value || "0",
+            father: document.getElementById('sFather').value,
+            id: Date.now() // Unique ID for each entry
+        };
 
-    let students = JSON.parse(localStorage.getItem('enrolledStudents')) || [];
-    students.push(newStudent);
-    localStorage.setItem('enrolledStudents', JSON.stringify(students));
-    alert("Student " + newStudent.name + " Registered Successfully!");
-    location.reload(); 
-});
-
-// 2. Marksheet Management Logic
-function loadMarksEntry() {
-    const students = JSON.parse(localStorage.getItem('enrolledStudents')) || [];
-    const container = document.getElementById('marksEntryContainer');
-    if (students.length === 0) return;
-
-    container.innerHTML = `<h4>Select Student to Enter Marks:</h4>`;
-    students.forEach((s, index) => {
-        container.innerHTML += `
-            <button class="btn-secondary" onclick="showMarkForm(${index})" style="margin:5px">
-                ${s.name} (Class ${s.sClass})
-            </button>`;
+        let students = JSON.parse(localStorage.getItem('enrolledStudents')) || [];
+        students.push(newStudent);
+        localStorage.setItem('enrolledStudents', JSON.stringify(students));
+        
+        alert("Success! " + newStudent.name + " Registered.");
+        this.reset();
+        displayAdmissionList(); // List update karein
     });
 }
 
-function showMarkForm(index) {
-    const students = JSON.parse(localStorage.getItem('enrolledStudents'));
-    const s = students[index];
-    const subjects = classSubjects[s.sClass];
-    const examType = document.getElementById('examTypeAdmit')?.value || "Final Exam";
+// 3. Function to Display List on Admission Page
+function displayAdmissionList() {
+    const listContainer = document.getElementById('studentListContainer');
+    if (!listContainer) return;
 
-    let subjectInputs = "";
-    subjects.forEach(sub => {
-        subjectInputs += `
-            <div class="input-group">
-                <label>${sub}</label>
-                <input type="number" class="mark-input" data-sub="${sub}" placeholder="Out of 100">
+    const students = JSON.parse(localStorage.getItem('enrolledStudents')) || [];
+    if (students.length === 0) {
+        listContainer.innerHTML = "<p>No students enrolled yet.</p>";
+        return;
+    }
+
+    listContainer.innerHTML = ""; // Clear purana data
+    students.forEach(s => {
+        listContainer.innerHTML += `
+            <div class="student-card">
+                <p><strong>${s.name}</strong> (Class: ${s.sClass}-${s.section})</p>
+                <small>Adm No: ${s.admNo} | Roll: ${s.roll}</small>
             </div>`;
     });
-
-    document.getElementById('marksEntryContainer').innerHTML = `
-        <div class="marks-form-box">
-            <h4>Entering Marks for: ${s.name} (${examType})</h4>
-            <div class="form-grid">${subjectInputs}</div>
-            <button class="btn-energy" onclick="generateMarksheet(${index})">Generate Marksheet</button>
-        </div>`;
 }
 
-function generateMarksheet(index) {
-    const students = JSON.parse(localStorage.getItem('enrolledStudents'));
-    const s = students[index];
+// 4. Function to Load Students on Examination Page
+function loadExamPortal() {
+    const entryContainer = document.getElementById('marksEntryContainer');
+    if (!entryContainer) return;
+
+    const students = JSON.parse(localStorage.getItem('enrolledStudents')) || [];
+    if (students.length === 0) return;
+
+    entryContainer.innerHTML = ""; // Clear placeholder
+    students.forEach((s, index) => {
+        const btn = document.createElement('button');
+        btn.className = "btn-secondary";
+        btn.style.margin = "5px";
+        btn.innerHTML = `<i class="fas fa-user-edit"></i> ${s.name} (${s.sClass})`;
+        btn.onclick = () => showMarkForm(index);
+        entryContainer.appendChild(btn);
+    });
+}
+
+// 5. Generate Admit Cards Logic
+function generateAllAdmitCards() {
+    const students = JSON.parse(localStorage.getItem('enrolledStudents')) || [];
     const examType = document.getElementById('examTypeAdmit').value;
-    const inputs = document.querySelectorAll('.mark-input');
+    const examDate = document.getElementById('examDate').value;
     const printArea = document.getElementById('printArea');
 
-    let rows = "";
-    let total = 0;
-    inputs.forEach(input => {
-        const val = parseInt(input.value) || 0;
-        total += val;
-        rows += `<tr><td>${input.getAttribute('data-sub')}</td><td>100</td><td>${val}</td></tr>`;
-    });
+    if (students.length === 0) {
+        alert("Please add students first!");
+        return;
+    }
 
-    printArea.innerHTML = `
-        <div class="marksheet">
-            <div class="admit-header">
-                <h2>NEW VISION GLOBAL ACADEMY</h2>
-                <p>Pakhalmar, Palamu, Jharkhand</p>
-                <hr>
-                <h3>REPORT CARD: ${examType}</h3>
-            </div>
-            <div class="marksheet-info">
-                <p><strong>Name:</strong> ${s.name} &nbsp;&nbsp; <strong>Class:</strong> ${s.sClass}</p>
-                <p><strong>Adm No:</strong> ${s.admNo} &nbsp;&nbsp; <strong>Father:</strong> ${s.father}</p>
-            </div>
-            <table>
-                <thead><tr><th>Subject</th><th>Max Marks</th><th>Obtained</th></tr></thead>
-                <tbody>${rows}</tbody>
-                <tfoot><tr><th colspan="2">Total Marks</th><th>${total}</th></tr></tfoot>
-            </table>
-            <div style="margin-top:40px; display:flex; justify-content: space-between;">
-                <p>Class Teacher</p>
-                <p>Principal Signature</p>
-            </div>
-        </div>`;
+    let content = `<h2 style="text-align:center">ADMIT CARDS - ${examType}</h2>`;
+    students.forEach(s => {
+        content += `
+            <div class="admit-card" style="border:2px solid #1e3a8a; padding:10px; margin:10px; width:300px; display:inline-block">
+                <center><h4>NEW VISION GLOBAL ACADEMY</h4></center>
+                <p><strong>Name:</strong> ${s.name}</p>
+                <p><strong>Class:</strong> ${s.sClass}</p>
+                <p><strong>Adm No:</strong> ${s.admNo}</p>
+                <p><strong>Date:</strong> ${examDate}</p>
+            </div>`;
+    });
+    
+    printArea.innerHTML = content;
     window.print();
 }
 
-// Load data on page load
-window.onload = loadMarksEntry;
+// Har page load hone par check karein
+window.onload = function() {
+    displayAdmissionList();
+    loadExamPortal();
+};
